@@ -1,9 +1,15 @@
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_GET, require_POST
 
 from .utils import process_document
+
+
+@csrf_exempt
+@require_GET
+def greeting(request):
+    return HttpResponse("Hello world!")
 
 
 @csrf_exempt

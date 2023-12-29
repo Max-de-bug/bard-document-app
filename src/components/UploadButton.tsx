@@ -59,10 +59,12 @@ const UploadDropzone = () => {
       }}
     >
       {({ getRootProps, getInputProps, acceptedFiles }) => (
-        <div
-          {...getRootProps()}
-          className="border h-64 border-dashed border-gray-300 rounded-lg"
-        />
+        <>
+          <div
+            {...getRootProps()}
+            className="border h-64 border-dashed border-gray-300 rounded-lg"
+          />
+        </>
       )}
     </Dropzone>
   );
@@ -80,9 +82,11 @@ const UploadButton = () => {
       }}
     >
       <DialogTrigger onClick={() => setIsOpen(true)} asChild>
-        <Button className="text-zinc-100 bg-blue-500" size={"sm"}>
-          Upload Word file
-        </Button>
+        <div className="flex justify-center">
+          <Button className="text-zinc-100 bg-blue-500" size={"sm"}>
+            Upload Word file
+          </Button>
+        </div>
       </DialogTrigger>
       <DialogContent>
         <UploadDropzone />
