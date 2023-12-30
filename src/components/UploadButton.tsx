@@ -82,7 +82,7 @@ const UploadButton = () => {
       }}
     >
       <DialogTrigger onClick={() => setIsOpen(true)} asChild>
-        <div className="flex justify-center">
+        <div className="w-full flex justify-center">
           <Button className="text-zinc-100 bg-blue-500" size={"sm"}>
             Upload Word file
           </Button>

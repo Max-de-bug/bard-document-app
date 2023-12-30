@@ -8,7 +8,14 @@ const MainWrapper = ({
   children: ReactNode;
 }) => {
   return (
-    <div className={cn("flex justify-between", className)}>{children}</div>
+    <div
+      className={cn(
+        "flex justify-between  md:flex-col sm:flex-col lg:flex-row",
+        className
+      )}
+    >
+      {children}
+    </div>
   );
 };
 
