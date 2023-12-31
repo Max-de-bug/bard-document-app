@@ -1,5 +1,5 @@
 const Details = () => {
-  return <div className="w-full flex justify-center p-2">Details</div>;
+  return <div className="w-full flex p-2"></div>;
 };
 
 export default Details;

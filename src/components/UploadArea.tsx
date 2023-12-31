@@ -1,15 +1,17 @@
 "use client";
 
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, useRef } from "react";
 import { Button } from "./ui/button";
 import { Cloud, File, Loader2 } from "lucide-react";
 import { Progress } from "./ui/progress";
 import Dashboard from "./Dashboard";
+import UploadButton from "./UploadButton";
 
 const UploadArea = () => {
   const [file, setFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
+  const hiddenFileInput = useRef<HTMLInputElement>(null);
   const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = event.target.files?.[0];
     setFile(uploadedFile !== undefined ? uploadedFile : null);
@@ -20,6 +22,12 @@ const UploadArea = () => {
     if (file !== null) {
       formData.append("file", file);
       // Perform upload logic here using formData
+    }
+  };
+
+  const triggerFileInput = () => {
+    if (hiddenFileInput.current) {
+      hiddenFileInput.current.click();
     }
   };
 
@@ -43,7 +51,21 @@ const UploadArea = () => {
             </div>
           </div>
         ) : (
-          <input type="file" onChange={handleFileChange} />
+          <div>
+            <Button
+              className="bg-blue-500 text-white px-4 py-2 rounded  hover:bg-blue-600"
+              onClick={triggerFileInput}
+            >
+              Browse
+            </Button>
+            <input
+              ref={hiddenFileInput}
+              type="file"
+              className="hidden"
+              onChange={handleFileChange}
+              accept=".docx, application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            />
+          </div>
         )}
         {isUploading ? (
           <div className="w-full mt-4 max-w-xs mx-auto">
@@ -54,6 +76,11 @@ const UploadArea = () => {
             />
           </div>
         ) : null}
+      </div>
+      <div className="w-full mt-6">
+        <div>
+          <UploadButton file={file} />
+        </div>
       </div>
     </div>
   );

@@ -12,6 +12,10 @@ import {
 } from "./ui/dialog";
 import { useToast } from "./ui/use-toast";
 
+interface UploadButtonProps {
+  file: File | null;
+}
+
 const UploadDropzone = () => {
   const { toast } = useToast();
   const [isUploading, setIsUploading] = useState<boolean>(false);
@@ -70,7 +74,7 @@ const UploadDropzone = () => {
   );
 };
 
-const UploadButton = () => {
+const UploadButton = ({ file }: UploadButtonProps) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <Dialog
@@ -83,9 +87,22 @@ const UploadButton = () => {
     >
       <DialogTrigger onClick={() => setIsOpen(true)} asChild>
         <div className="w-full flex justify-center">
-          <Button className="text-zinc-100 bg-blue-500" size={"sm"}>
-            Upload Word file
-          </Button>
+          {file ? (
+            <Button
+              className="text-zinc-100 bg-blue-500  hover:bg-blue-600"
+              size={"sm"}
+            >
+              Submit
+            </Button>
+          ) : (
+            <Button
+              className="text-zinc-100 bg-blue-500  hover:bg-blue-600"
+              size={"sm"}
+              disabled
+            >
+              Upload Word file
+            </Button>
+          )}
         </div>
       </DialogTrigger>
       <DialogContent>
