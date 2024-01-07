@@ -1,7 +1,7 @@
 import Dashboard from "@/components/Dashboard";
 import Description from "@/components/Description";
 import Details from "@/components/Details";
-import MainWrapper from "@/components/MainWrapper";
+import { FileContextProvider } from "@/components/context/FileContext";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import UploadArea from "@/components/UploadArea";
 import UploadButton from "@/components/UploadButton";
@@ -11,13 +11,13 @@ export default function Home() {
     <MaxWidthWrapper>
       <>
         <Description />
-        <MainWrapper>
+        <FileContextProvider>
           <UploadArea />
           <Dashboard />
-        </MainWrapper>
-        <div className="flex md:flex-col sm:flex-col lg:flex-row">
+        </FileContextProvider>
+        {/* <div className="flex md:flex-col sm:flex-col lg:flex-row">
           <Details />
-        </div>
+        </div> */}
       </>
     </MaxWidthWrapper>
   );

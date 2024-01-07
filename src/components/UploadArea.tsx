@@ -79,7 +79,7 @@ const UploadArea = () => {
       </div>
       <div className="w-full mt-6">
         <div>
-          <UploadButton file={file} />
+          <UploadButton />
         </div>
       </div>
     </div>
