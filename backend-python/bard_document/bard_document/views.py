@@ -2,6 +2,7 @@ import uuid
 
 import boto3
 from botocore.exceptions import NoCredentialsError
+from decouple import config
 from django.core.validators import FileExtensionValidator, MaxValueValidator
 from django.forms import ValidationError
 from django.http import HttpResponse, JsonResponse
@@ -21,9 +22,9 @@ def greeting(request):
 @csrf_exempt
 @require_POST
 def upload_file(request):
-    AWS_ACCESS_KEY = "AKIAQASFYCQK2BVBFL7R"
-    AWS_SECRET_KEY = "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"
-    AWS_BUCKET_NAME = "exam-q-bucket"
+    AWS_ACCESS_KEY = config("AWS_ACCESS_KEY")
+    AWS_SECRET_KEY = config("AWS_SECRET_KEY")
+    AWS_BUCKET_NAME = config("AWS_BUCKET_NAME")
     print(request)
     uploaded_file = request.FILES.get("file")
     print(uploaded_file)

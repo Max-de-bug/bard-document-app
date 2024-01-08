@@ -1,14 +1,16 @@
 "use client";
 
-import React, { ChangeEvent, useState, useRef } from "react";
+import React, { ChangeEvent, useState, useRef, useContext } from "react";
 import { Button } from "./ui/button";
 import { Cloud, File, Loader2 } from "lucide-react";
 import { Progress } from "./ui/progress";
 import Dashboard from "./Dashboard";
 import UploadButton from "./UploadButton";
+import { FileContext } from "./context/FileContext";
 
 const UploadArea = () => {
-  const [file, setFile] = useState<File | null>(null);
+  const fileContext = useContext(FileContext);
+  const { file, setFile } = fileContext;
   const [isUploading, setIsUploading] = useState<boolean>(false);
   const [uploadProgress, setUploadProgress] = useState<number>(0);
   const hiddenFileInput = useRef<HTMLInputElement>(null);
@@ -32,7 +34,7 @@ const UploadArea = () => {
   };
 
   return (
-    <div className="w-full p-4 shadow-lg mt-4 mb-8 h-80 min-h-72">
+    <div className="w-full  p-4 shadow-lg mt-4 mb-8 h-80 min-h-72">
       <div className="p-8 border-2 border-dashed border-slate-400 w-full flex justify-center items-center	 flex-col gap-4 h-full relative">
         <span className="leading-normal text-center text-gray-400 text-lg text-b">
           Drag and Drop

@@ -1,3 +1,4 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { ReactNode, createContext, useState, useContext } from "react";
 import { useToast } from "../ui/use-toast";
@@ -8,6 +9,7 @@ interface FileProps {
   handleUpload: (file: File | null) => void;
   handleButtonClick: () => void;
   isUploading: boolean;
+  setFile: React.Dispatch<React.SetStateAction<File | null>>;
 }
 
 export const FileContext = createContext<FileProps>({
@@ -16,6 +18,7 @@ export const FileContext = createContext<FileProps>({
   isUploading: false,
   handleUpload: () => {},
   handleButtonClick: () => {},
+  setFile: () => {},
 });
 export const FileContextProvider = ({
   className,
@@ -81,6 +84,7 @@ export const FileContextProvider = ({
       }
 
       const responseData = await response.json();
+      console.log(responseData);
       setPresignedURL(responseData.presigned_url);
 
       toast({
@@ -118,11 +122,12 @@ export const FileContextProvider = ({
         handleUpload,
         handleButtonClick,
         isUploading,
+        setFile,
       }}
     >
       <div
         className={cn(
-          "flex justify-between md:flex-col sm:flex-col lg:flex-row",
+          "flex  justify-between md:flex-col sm:flex-col lg:flex-row",
           className
         )}
       >
