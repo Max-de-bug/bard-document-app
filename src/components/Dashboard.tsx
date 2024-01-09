@@ -10,7 +10,7 @@ const Dashboard = () => {
   const fileContext = useContext(FileContext);
   const { presignedURL } = fileContext;
   return (
-    <div className="w-full  p-2 ">
+    <div className="w-full  ml-5  p-2 border-2  border-solid border-slate-400">
       This is Dashboard
       <p>PresignedURL: {presignedURL}</p>
     </div>

@@ -125,13 +125,15 @@ export const FileContextProvider = ({
         setFile,
       }}
     >
-      <div
-        className={cn(
-          "flex  justify-between md:flex-col sm:flex-col lg:flex-row",
-          className
-        )}
-      >
-        {children}
+      <div className="bg-white p-5 rounded min-h-full">
+        <div
+          className={cn(
+            "flex  justify-between  md:flex-col sm:flex-col lg:flex-row",
+            className
+          )}
+        >
+          {children}
+        </div>
       </div>
     </FileContext.Provider>
   );
